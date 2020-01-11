@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3000"
+    volumes:
+      - '/app/node_modules'
+      - '.:/app'
+  tests:
+    build:
+      context: .                   # Current dirfectory
+      dockerfile: Dockerfile.dev   # Using specific file
+    volumes:                       # - represents and array or list....
+      - '/app/node_modules'        # Establish aplaceholder and make sure we don't overide this
+      - '.:/app'                   # Map current working directory
+    command: ["npm", "run", "test"] # override execution command
