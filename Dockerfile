@@ -13,6 +13,8 @@ RUN npm run build
 
 #Each block can only have 1 FROM statement...
 FROM nginx
+#POrt to expose from AWS
+EXPOSE 80
 # --from copy something from a previous phase
 #this default command starts nginx
 COPY --from=builder /app/build /usr/share/nginx/html
